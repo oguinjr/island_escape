@@ -47,7 +47,7 @@ def island_escape():
 	fox, chicken, and a bag of seed. You have a boat, but it can only hold you and one\n
 	other item or animal. Make it to the island to survive.\n
 	One quick caveat however, the fox can never be left alone with the chicken, and the\n
-	chicken can never be left alone with the seed.\n
+	chicken can never be left alone with the grain.\n
 	GOOD LUCK!
 	""")
 
