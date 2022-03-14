@@ -1,53 +1,57 @@
-def island_escape():
-	island = []
-	main_land = ['fox','chicken', 'grain']
-	boat = []
-	def all_dead():
-		print("You left all the animals to eat each other up.")
-		print("You die of starvation.")
-		print("........")
+def all_dead():
+	print("You left all the animals to eat each other up.")
+	print("You die of starvation.")
+	print("........")
+	print("Hit enter to start over.")
+	input()
+	island_escape()
+
+def dead_chicken():
+	if 'fox' and 'chicken' in main_land:
+		print("You left the fox to eat the chicken.")
+		print("I hope you enjoy eating your grain!")
 		print("Hit enter to start over.")
 		input()
 		island_escape()
-
-	def dead_chicken():
-		if 'fox' and 'chicken' in main_land:
-			print("You left the fox to eat the chicken.")
-			print("I hope you enjoy eating your grain!")
-			print("Hit enter to start over.")
-			input()
-			island_escape()
-		elif 'fox' and 'chicken' in island:
-			print("You left the fox to eat the chicken.")
-			print("I hope you enjoy eating your grain!")
-			print("Hit enter to start over.")
-			input()
-			island_escape()
-
-	def no_grain():
-		if 'chicken' and 'grain' in main_land:
-			print("You left the chicken to eat all the grain.")
-			print("Good luck growing crops!")
-			print("Hit enter to start over.")
-			input()
-			island_escape()
-		elif 'chicken' and 'grain' in island:
-			print("You left the chicken to eat all the grain.")
-			print("Good luck growing crops!")
-			print("Hit enter to start over.")
-			input()
-			island_escape()
-
-	def set_sail():
-		print("Hit enter to set sail.")
+	elif 'fox' and 'chicken' in island:
+		print("You left the fox to eat the chicken.")
+		print("I hope you enjoy eating your grain!")
+		print("Hit enter to start over.")
 		input()
-		dead_chicken()
-		no_grain()
+		island_escape()
+	else:
+		print("try again")
+
+def no_grain():
+	if 'chicken' and 'grain' in main_land:
+		print("You left the chicken to eat the grain.")
+		print("I hope you enjoy growing no crops!")
+		print("Hit enter to start over.")
+		input()
+		island_escape()
+	elif 'chicken' and 'grain' in island:
+		print("You left the chicken to eat all the grain.")
+		print("Good luck growing crops!")
+		print("Hit enter to start over.")
+		input()
+		island_escape()
+	else:
+		print("try again")
+
+def set_sail():
+	print("Hit enter to set sail.")
+	input()
+	#dead_chicken()
+	#no_grain()
+island = []
+main_land = ['fox','chicken', 'grain']
+boat = []
+def island_escape():
 	print("""You need to escape from the mainland to a nearby island with your\n
 	fox, chicken, and a bag of seed. You have a boat, but it can only hold you and one\n
 	other item or animal. Make it to the island to survive.\n
 	One quick caveat however, the fox can never be left alone with the chicken, and the\n
-	chicken can never be left alone with the grain.\n
+	chicken can never be left alone with the seed.\n
 	GOOD LUCK!
 	""")
 
@@ -78,8 +82,6 @@ def island_escape():
 
 		else:
 			print(f"Do you want to:")
-			print(f"a. Drop off the {boat} and leave alone?")
-			print("or")
 			if len(main_land) == 2:
 				swap_first = main_land[0]
 				swap_second = main_land[1]
@@ -91,6 +93,9 @@ def island_escape():
 				swap_first = main_land[0]
 				boat_first = boat[0]
 				print(f"b. swap the {boat_first} for the {swap_first}")
+				choice = input('>')
+			else:
+				print(f"a. Drop off the {boat} and leave alone?")
 				choice = input('>')
 
 			if choice == 'a':
@@ -146,10 +151,9 @@ def island_escape():
 
 		else:
 			print("You are at the island.")
-			Print("Press Enter to continue.")
+			print("Press Enter to continue.")
 			input()
 			print(f"Do you want to:")
-			print(f"a. Drop off the {boat} and leave alone?")
 			print("or")
 			if len(island) == 2:
 				swap_first = island[0]
@@ -162,6 +166,9 @@ def island_escape():
 				swap_first = island[0]
 				boat_first = boat[0]
 				print(f"b. swap the {boat_first} for the {swap_first}")
+				choice = input('>')
+			else:
+				print(f"a. Drop off the {boat} and leave alone?")
 				choice = input('>')
 
 			if choice == 'a':
