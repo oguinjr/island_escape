@@ -87,8 +87,13 @@ def island_escape():
 				choice = input('>')
 				main_land.remove(choice)
 				boat.append(choice)
+				passenger = boat[0]
+				if not main_land:
+					land = "nothing in it"
+				else:
+					land = (' and '.join(main_land))
 				print("-----------------------------------------------------------")
-				print(f"The boat has {boat} and the mainland has {main_land}.")
+				print(f"The boat has {passenger} and the mainland has {land}.")
 				print("-----------------------------------------------------------")
 				set_sail()
 				print("-----------------------------------------------------------")
@@ -107,6 +112,9 @@ def island_escape():
 				break
 
 		else:
+			print("You are at the mainland")
+			print("Press Enter to continue.")
+			input()
 			print(f"Do you want to:")
 			print("-----------------------------------------------------------")
 			if len(main_land) == 2:
@@ -122,13 +130,13 @@ def island_escape():
 			elif len(main_land) == 1:
 				swap_first = main_land[0]
 				boat_first = boat[0]
-				print(f"a. Drop off the {boat} and leave alone?")
+				print(f"a. Drop off the {boat_first} and leave alone?")
 				print(f"b. swap the {boat_first} for the {swap_first}")
 				print("-----------------------------------------------------------")
 				choice = input('>')
 				print("-----------------------------------------------------------")
 			else:
-				print(f"a. Drop off the {boat} and leave alone?")
+				print(f"a. Drop off the {boat_first} and leave alone?")
 				print("-----------------------------------------------------------")
 				choice = input('>')
 				print("-----------------------------------------------------------")
@@ -137,7 +145,17 @@ def island_escape():
 				boat_first = boat[0]
 				main_land.append(boat_first)
 				boat.remove(boat_first)
-				print(f"The boat now has {boat} and the mainland has {main_land}.")
+				if not boat:
+					boat_first = ("nothing in it")
+				else:
+					boat_first = boat[0]
+				# i am about to change main_land to land_one
+				if not main_land:
+					land_one = "nothing in it"
+				else:
+					land_one = (' and '.join(main_land))
+				# i am about to change a. boat to boat_first
+				print(f"The boat now has {boat_first} and the mainland has {land_one}.")
 				set_sail()
 				print("-----------------------------------------------------------")
 
@@ -148,7 +166,14 @@ def island_escape():
 				main_land.remove(main_first)
 				main_land.append(boat_first)
 				boat.remove(boat_first)
-				print(f"The boat now has {boat} and the mainland has {main_land}.")
+				if not boat:
+					boat_first = ("nothing in it")
+				else:
+					boat_first = boat[0]
+				# i am about to change main_land to land_one. I wont repeat this comment
+				land_one = (' and '.join(main_land))
+				# i am about to change a. boat to boat_first
+				print(f"The boat now has {boat_first} and the mainland has {land_one}.")
 				print("-----------------------------------------------------------")
 				set_sail()
 			elif choice == 'c':
@@ -157,7 +182,13 @@ def island_escape():
 				boat.append(main_second)
 				main_land.remove(main_second)
 				boat.remove(boat_first)
-				print(f"The boat now has {boat} and the mainland has {main_land}.")
+				if not boat:
+					boat_first = ("nothing in it")
+				else:
+					boat_first = boat[0]
+				land_one = (' and '.join(main_land))
+				# i am about to change a. boat to boat_first
+				print(f"The boat now has {boat_first} and the mainland has {land_one}.")
 				print("-----------------------------------------------------------")
 				set_sail()
 
@@ -181,8 +212,10 @@ def island_escape():
 				choice = input('>')
 				island.remove(choice)
 				boat.append(choice)
+				land_two = (' and '.join(island))
 				print("-----------------------------------------------------------")
-				print(f"The boat has {boat} and the island has {island}.")
+				# i am about to change a. boat to boat_first
+				print(f"The boat has {boat_first} and the island has {land_two}.")
 				print("-----------------------------------------------------------")
 				set_sail()
 
@@ -203,25 +236,33 @@ def island_escape():
 				swap_first = island[0]
 				swap_second = island[1]
 				boat_first = boat[0]
-				print(f"a. Drop off the {boat} and leave alone?")
-				print(f"b. swap the {boat_first} for the {swap_first}")
-				print(f"c. swap the {boat_first} for the {swap_second}")
-				print(f"z. Keep the {boat} and head back to mainland")
-				print("-----------------------------------------------------------")
-				choice = input('>')
-				print("-----------------------------------------------------------")
+				if 'chicken' in boat:
+					print("Press enter and hop off the boat with your chicken to\n join your friends and win the game!")
+					input()
+					print("!!!!!!!!!!!!!!!!!!!!!YOU DID IT!!!!!!!!!!!!!!!!!!!!!!")
+					exit(0)
+				else:
+					print(f"a. Drop off the {boat_first} and leave alone?")
+					print(f"b. swap the {boat_first} for the {swap_first}")
+					print(f"c. swap the {boat_first} for the {swap_second}")
+					print(f"z. Keep the {boat_first} and head back to mainland")
+					print("-----------------------------------------------------------")
+					choice = input('>')
+					print("-----------------------------------------------------------")
 			elif len(island) == 1:
 				swap_first = island[0]
 				boat_first = boat[0]
-				print(f"a. Drop off the {boat} and leave alone?")
+				print(f"a. Drop off the {boat_first} and leave alone?")
 				print(f"b. swap the {boat_first} for the {swap_first}")
 				print(f"z. Keep the {boat_first} and head back to mainland")
 				print("-----------------------------------------------------------")
 				choice = input('>')
 				print("-----------------------------------------------------------")
 			else:
-				print(f"a. Drop off the {boat} and leave alone?")
-				print(f"z. Keep the {boat} and head back to mainland")
+				boat_first = boat[0]
+				# i am about to change a. boat to boat_first z too
+				print(f"a. Drop off the {boat_first} and leave alone?")
+				print(f"z. Keep the {boat_first} and head back to mainland")
 				print("-----------------------------------------------------------")
 				choice = input('>')
 				print("-----------------------------------------------------------")
@@ -230,17 +271,13 @@ def island_escape():
 				boat_first = boat[0]
 				island.append(boat_first)
 				boat.remove(boat_first)
-				print(f"The boat now has {boat} and the island has {island}.")
-				if 'grain' in island:
-					if 'fox' in island:
-						if 'chicken' in island:
-							print("-----------------------------------------------------------")
-							print('you won!')
-							print("-----------------------------------------------------------")
-
-							exit(0)
+				land_two = (' and '.join(island))
+				if not boat:
+					boat_first = ("nothing in it")
 				else:
-					set_sail()
+					boat_first = boat[0]
+				print(f"The boat now has {boat_first} and the island has {land_two}.")
+				set_sail()
 			elif choice == 'b':
 				island_first = island[0]
 				boat_first = boat[0]
@@ -248,10 +285,14 @@ def island_escape():
 				island.remove(island_first)
 				island.append(boat_first)
 				boat.remove(boat_first)
+				if not boat:
+					boat_first = ("nothing in it")
+				else:
+					boat_first = boat[0]
+				land_two = (' and '.join(island))
 				print("-----------------------------------------------------------")
-				print(f"The boat now has {boat} and the island has {island}.")
+				print(f"The boat now has {boat_first} and the island has {land_two}.")
 				print("-----------------------------------------------------------")
-
 				set_sail()
 			elif choice == 'c':
 				island_second = island[1]
@@ -259,10 +300,14 @@ def island_escape():
 				boat.append(island_second)
 				island.remove(island_second)
 				boat.remove(boat_first)
+				land_two = (' and '.join(island))
+				if not boat:
+					boat_first = ("nothing in it")
+				else:
+					boat_first = boat[0]
 				print("-----------------------------------------------------------")
-				print(f"The boat now has {boat} and the mainland has {island}.")
+				print(f"The boat now has {boat_first} and the mainland has {land_two}.")
 				print("-----------------------------------------------------------")
-
 				set_sail()
 			else:
 				print("Alright then, back to the mainland")
